@@ -82,13 +82,17 @@ public  class BaseAdapter<T> extends RecyclerView.Adapter<BaseViewHolder>  {
     }
     public void addItem(int position,T item){
         dataList.add(position,item);
-        notifyItemInserted(position);
+        notifyItemInserted(position+getHeadersCount());
+  
+         notifyItemRangeChanged(position+getHeadersCount(), dataList.size()+1);
         Log.e("dataList.size","dataList.size"+dataList.size());
     }
 
     public void replace(int position,T item){
         dataList.set(position,item);
-        notifyItemChanged(position);
+   
+          notifyItemChanged(position+getHeadersCount());
+         notifyItemRangeChanged(position+getHeadersCount(), dataList.size());
         Log.e("dataList.size","dataList.size"+dataList.size());
     }
   //删除指定列
